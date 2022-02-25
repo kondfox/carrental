@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Új autó felvitele</title>
+</head>
+<body>
+    <h1>Új autó felvitele</h1>
+    <a href="/">Kölcsönzés</a>
+    <form action="/new-car" method="post">
+        <div>
+            <label for="brand">Márka</label>
+            <select id="brand" name="brand">
+                <option th:each="brand : ${brands}" th:text="${brand}" th:value="${brand}"></option>
+            </select>
+        </div>
+        <div>
+            <label for="type">Típus</label>
+            <input id="type" name="type" type="text">
+        </div>
+        <div>
+            <label for="year">Évjárat</label>
+            <input id="year" name="year" type="number">
+        </div>
+        <div>
+            <label for="color">Szín</label>
+            <input id="color" name="color" type="text">
+        </div>
+        <div>
+            <label for="price">Ft / nap</label>
+            <input id="price" name="price" type="number">
+        </div>
+        <div>
+            <input type="submit" value="Mentés">
+        </div>
+    </form>
+</body>
+</html>

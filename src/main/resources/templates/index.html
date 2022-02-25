@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Autókölcsönző</title>
+</head>
+<body>
+    <h1>Autókölcsönző</h1>
+    <a href="/new-car">Új autó felvitele</a>
+    <section>
+        <h2>Kölcsönözhető autók</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Márka</th>
+                    <th>Típus</th>
+                    <th>Évjárat</th>
+                    <th>Szín</th>
+                    <th>Ft / nap</th>
+                    <th>Műveletek</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="car : ${cars}" th:object="${car}">
+                    <td th:text="*{brand}"></td>
+                    <td th:text="*{type}"></td>
+                    <td th:text="*{year}"></td>
+                    <td th:text="*{color}"></td>
+                    <td th:text="*{price}"></td>
+                    <td>
+                        <form th:action="|/cars/*{id}/delete|" method="post">
+                            <input type="submit" value="Törlés">
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section>
+        <h2>Statisztika:</h2>
+        <ul>
+            <li th:each="carStat : ${brandCounts}" th:text="|${carStat.brand}: ${carStat.count}|"></li>
+        </ul>
+        <p th:text="|Legtöbb: ${mostFrequentBrand}|"></p>
+    </section>
+</body>
+</html>
